@@ -1,0 +1,11 @@
+spring:
+  profiles:
+    active: develop
+springfox:
+  documentation:
+    swagger:
+      v2:
+        path : /main/swagger-docs
+feign:
+  httpclient:
+    enabled: true

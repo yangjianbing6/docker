@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: intellect-book-main
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://eureka.meteor-dog.com:8896/eureka/
+
+  instance:
+  #      status-page-url: http://zull.shootingstargo.com:8890/eureka//swagger-ui.html
+      prefer-ip-address: true
+      instance-id: ${spring.cloud.client.ipAddress}:${server.port}

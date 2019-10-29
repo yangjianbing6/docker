@@ -1,0 +1,11 @@
+server:
+  port: 8896
+eureka:
+  server:
+    eviction-interval-timer-in-ms: 10000
+    #enable-self-preservation: false
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://localhost:${server.port}/eureka/

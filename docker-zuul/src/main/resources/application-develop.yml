@@ -1,0 +1,11 @@
+server:
+  port: 8890
+#注册中心
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8896/eureka/
+  instance:
+      status-page-url: http://localhost:8890/swagger-ui.html
+
+swagger.enable: true

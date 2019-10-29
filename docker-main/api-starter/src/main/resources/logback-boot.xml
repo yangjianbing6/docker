@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <property name="USER_BEHAVIOR_PATH" value="user-behavior"/>
+
+    <!-- 文件输出格式 -->
+    <property name="PATTERN" value="%-12(%d{yyyy-MM-dd HH:mm:ss.SSS}) |-%-5level [%thread] %c [%L] -| %msg%n"/>
+    <property name="USER_BEHAVIOR_PATTERN"
+              value="%-12(%d{yyyy-MM-dd HH:mm:ss.SSS})|%X{service_ip},%X{req.remoteHost},%X{req.method},%X{req.requestURL}| %msg%n"/>
+    <!-- 开发环境 -->
+    <!--<springProfile name="dev">-->
+    <!--<springProfile name="dev">-->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+
+    <appender name="userBehavior" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${USER_BEHAVIOR_PATH}/logs/user_behavior.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${USER_BEHAVIOR_PATH}/logs/user_behavior-%d{yyyy-MM-dd}.log</fileNamePattern>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${USER_BEHAVIOR_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="com.intellect.book" level="INFO">
+        <appender-ref ref="userBehavior"/>
+    </logger>
+
+
+    <logger name="com.intellect.book.dao" level="debug"/>
+
+    <root level="info">
+        <appender-ref ref="CONSOLE"/>
+    </root>
+
+</configuration>

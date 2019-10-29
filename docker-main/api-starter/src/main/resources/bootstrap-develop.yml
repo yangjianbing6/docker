@@ -1,0 +1,27 @@
+server:
+ port: 8999
+spring:
+  application:
+    name: docker-main
+
+  #数据库连接池
+  datasource:
+    druid:
+      url: jdbc:mysql://39.106.67.13:3306/healthcare?useUnicode=true&characterEncoding=utf8&useSSL=false
+      username: root
+      password: laoliu@163.com
+      initial-size: 5
+      max-active: 20
+      min-idle: 5
+      max-wait: 6000
+      driver-class-name: com.mysql.jdbc.Driver
+      filters: stat,wall,log4j
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8896/eureka/,http://localhost:8896/eureka/
+    instance:
+           status-page-url: http://localhost:8890/eureka/swagger-ui.html
+
+
+

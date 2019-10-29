@@ -1,0 +1,9 @@
+server:
+  port: 8890
+#注册中心
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8896/eureka/
+
+swagger.enable: true
