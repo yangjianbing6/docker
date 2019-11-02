@@ -3,6 +3,7 @@ package com.intellect.book.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.intellect.book.base.controller.BaseController;
 import com.intellect.book.base.token.Token;
+import com.intellect.book.domain.request.Base64DTO;
 import com.intellect.book.domain.request.OrderVO;
 import com.intellect.book.service.OrderItemService;
 import com.intellect.book.service.OrderService;
@@ -12,21 +13,20 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
 import net.iharder.Base64;
+import org.assertj.core.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.io.IOException;
 
 /**
  * Created by yangjianbing
- * 登录接口
+ * 解析base64
  *
  * @date 2019/8/10 16:01
  */
-@Api(description = "登录接口")
+@Api(description = "解析base64")
 @RestController
 @RequestMapping(value = "/main/base64")
 @Slf4j
@@ -44,28 +44,31 @@ public class Base64Controller extends BaseController {
      * @return
      */
     @ApiOperation("解析base64")
-    @GetMapping("/decode")
+    @PostMapping("/decode")
     @Token
     @ApiImplicitParam(name = "token", value = "token", required = true, dataType = "String",
             paramType = "header")
     public Object decodeOrder(@ApiParam(required = true, value = "base64数据", name = "base64Msg")
-                              @RequestParam("base64Msg") String base64Msg) {
-        String jsonStr;
+                              @RequestBody Base64DTO base64DTO) {
+        if (base64DTO == null || Strings.isNullOrEmpty(base64DTO.getBase64Msg())) {
+            return unSuccessResponse("参数异常");
+        }
         try {
-            byte[] bytes = Base64.decode(base64Msg);
-            jsonStr = new String(bytes, "UTF-8");
+            byte[] bytes = Base64.decode(base64DTO.getBase64Msg());
+            String jsonStr = new String(bytes, "UTF-8");
             OrderVO orderVO = JSONObject.parseObject(jsonStr, OrderVO.class);
             if (orderVO == null) {
                 return unSuccessResponse("解析失败");
             }
-            orderService.insertOrders(orderVO);
+            String ordId = orderService.insertOrders(orderVO);
+            orderVO.setOrdid(ordId);
+            return successResponse(orderVO);
 
-        } catch (IOException e) {
+        } catch (Exception e) {
             log.error(e.getMessage(), e);
             return unSuccessResponse("解析失败");
         }
 
-        return successResponse("解析保存成功");
     }
 
 }

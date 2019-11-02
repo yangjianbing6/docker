@@ -1,22 +1,19 @@
-package com.intellect.book.domain.entity;
+package com.intellect.book.domain.response;
 
-import com.intellect.book.base.entity.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
-import javax.persistence.Table;
 
 /**
  * @author yangjianbing
  * @create 2019-10-30 23:29:01
  **/
-@Table(name = "order_item")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class OrderItem extends BaseEntity {
+public class OrderItemResDTO {
 
     /**
      *
@@ -161,13 +158,5 @@ public class OrderItem extends BaseEntity {
      */
     @Column(name = "OutDrugFlag")
     private String outDrugFlag;
-
-    /**
-     * 构造
-     * @param ordId
-     */
-    public OrderItem(String ordId){
-        this.ordid = ordId;
-    }
 
 }

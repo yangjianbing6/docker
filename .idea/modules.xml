@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/docker-main/api-starter/api-starter.iml" filepath="$PROJECT_DIR$/docker-main/api-starter/api-starter.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/docker.iml" filepath="$PROJECT_DIR$/.idea/docker.iml" />
+      <module fileurl="file://$PROJECT_DIR$/docker-eureka/docker-eureka.iml" filepath="$PROJECT_DIR$/docker-eureka/docker-eureka.iml" />
+      <module fileurl="file://$PROJECT_DIR$/docker-main/docker-main.iml" filepath="$PROJECT_DIR$/docker-main/docker-main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/docker-zuul/docker-zuul.iml" filepath="$PROJECT_DIR$/docker-zuul/docker-zuul.iml" />
     </modules>
   </component>
 </project>

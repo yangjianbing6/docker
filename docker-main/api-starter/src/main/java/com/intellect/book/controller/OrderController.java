@@ -1,0 +1,126 @@
+package com.intellect.book.controller;
+
+import com.intellect.book.base.controller.BaseController;
+import com.intellect.book.base.dto.result.PageResult;
+import com.intellect.book.base.token.Token;
+import com.intellect.book.domain.response.OrderItemResDTO;
+import com.intellect.book.domain.response.OrderResDTO;
+import com.intellect.book.service.OrderService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import lombok.extern.slf4j.Slf4j;
+import org.assertj.core.util.Strings;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+/**
+ * Created by yangjianbing
+ * 订单接口
+ *
+ * @date 2019/8/10 16:01
+ */
+@Api(description = "订单接口")
+@RestController
+@RequestMapping(value = "/main/order")
+@Slf4j
+public class OrderController extends BaseController {
+
+    @Autowired
+    OrderService orderService;
+
+//    @Autowired
+//    OrderItemService orderItemService;
+
+    /**
+     * 获取订单列表
+     *
+     * @return
+     */
+    @ApiOperation("获取订单列表")
+    @PostMapping("/list")
+    @Token
+    @ApiImplicitParam(name = "token", value = "token", required = true, dataType = "String",
+            paramType = "header")
+    public Object orderList(@ApiParam(required = false, value = "当前页数", name = "page")
+                            @RequestParam(value = "page", defaultValue = "1")
+                                    Integer page,
+                            @ApiParam(required = false, value = "当前页面显示多少条 , 默认10条", name = "limit")
+                            @RequestParam(value = "limit", defaultValue = "10")
+                                    Integer limit,
+                            @ApiParam(required = true, value = "状态（0：全部，101：新建，102：已记账，103：已发药）", name = "status")
+                            @RequestParam(value = "status")
+                                    String status) {
+//        if (base64DTO == null || Strings.isNullOrEmpty(base64DTO.getBase64Msg())) {
+//            return unSuccessResponse("参数异常");
+//        }
+        try {
+            PageResult<OrderResDTO> result = orderService.orderList(status, getRowRounds(page, limit));
+            return successResponse(result);
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+            return unSuccessResponse("查询失败");
+        }
+    }
+
+    /**
+     * 获取详细明细订单列表
+     *
+     * @return
+     */
+    @ApiOperation("获取详细明细订单列表")
+    @GetMapping("/order-item-list")
+    @Token
+    @ApiImplicitParam(name = "token", value = "token", required = true, dataType = "String",
+            paramType = "header")
+    public Object orderList(@ApiParam(required = true, name = "ordId")
+                            @RequestParam(value = "ordId")
+                                    String ordId) {
+        try {
+            List<OrderItemResDTO> result = orderService.orderItemList(ordId);
+            return successResponse(result);
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+            return unSuccessResponse("查询失败");
+        }
+    }
+
+    /**
+     * 派发
+     *
+     * @return
+     */
+    @ApiOperation("派发")
+    @PostMapping("/hand-out")
+    @Token
+    @ApiImplicitParam(name = "token", value = "token", required = true, dataType = "String",
+            paramType = "header")
+    public Object orderHandOut(@ApiParam(required = true, name = "ordId")
+                               @RequestParam(value = "ordId")
+                                       String ordId,
+                               @ApiParam(required = true,
+                                       value = "使用id字段，结构为：orderItemId1,orderItemId2",
+                                       name = "orderItemIds")
+                               @RequestParam(value = "orderItemIds")
+                                       String orderItemIds,
+                               @ApiParam(required = false,
+                                       value = "医嘱的图片路径",
+                                       name = "orderPicUrl")
+                               @RequestParam(value = "orderPicUrl")
+                                       String orderPicUrl) {
+        if (Strings.isNullOrEmpty(ordId) || Strings.isNullOrEmpty(orderItemIds)) {
+            return unSuccessResponse("参数异常");
+        }
+        try {
+            orderService.orderHandOut(ordId, orderItemIds, orderPicUrl);
+            return successResponse("派发成功");
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+            return unSuccessResponse("派发失败");
+        }
+    }
+
+}
