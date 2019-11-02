@@ -19,11 +19,11 @@ import java.util.List;
 
 /**
  * Created by yangjianbing
- * 订单接口
+ * 处方接口
  *
  * @date 2019/8/10 16:01
  */
-@Api(description = "订单接口")
+@Api(description = "处方接口")
 @RestController
 @RequestMapping(value = "/main/order")
 @Slf4j
@@ -32,15 +32,12 @@ public class OrderController extends BaseController {
     @Autowired
     OrderService orderService;
 
-//    @Autowired
-//    OrderItemService orderItemService;
-
     /**
-     * 获取订单列表
+     * 获取处方列表
      *
      * @return
      */
-    @ApiOperation("获取订单列表")
+    @ApiOperation("获取处方列表")
     @PostMapping("/list")
     @Token
     @ApiImplicitParam(name = "token", value = "token", required = true, dataType = "String",
@@ -51,12 +48,9 @@ public class OrderController extends BaseController {
                             @ApiParam(required = false, value = "当前页面显示多少条 , 默认10条", name = "limit")
                             @RequestParam(value = "limit", defaultValue = "10")
                                     Integer limit,
-                            @ApiParam(required = true, value = "状态（0：全部，101：新建，102：已记账，103：已发药）", name = "status")
+                            @ApiParam(required = true, value = "状态（0：全部，101：新建，102：已记账，103：已发药，104：已派发）", name = "status")
                             @RequestParam(value = "status")
                                     String status) {
-//        if (base64DTO == null || Strings.isNullOrEmpty(base64DTO.getBase64Msg())) {
-//            return unSuccessResponse("参数异常");
-//        }
         try {
             PageResult<OrderResDTO> result = orderService.orderList(status, getRowRounds(page, limit));
             return successResponse(result);
@@ -67,11 +61,11 @@ public class OrderController extends BaseController {
     }
 
     /**
-     * 获取详细明细订单列表
+     * 获取处方详细明细列表
      *
      * @return
      */
-    @ApiOperation("获取详细明细订单列表")
+    @ApiOperation("获取处方详细明细列表")
     @GetMapping("/order-item-list")
     @Token
     @ApiImplicitParam(name = "token", value = "token", required = true, dataType = "String",

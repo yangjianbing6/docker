@@ -3,6 +3,7 @@ package com.intellect.book.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.intellect.book.base.controller.BaseController;
 import com.intellect.book.base.token.Token;
+import com.intellect.book.domain.entity.OrderItem;
 import com.intellect.book.domain.request.Base64DTO;
 import com.intellect.book.domain.request.OrderVO;
 import com.intellect.book.service.OrderItemService;
@@ -19,6 +20,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * Created by yangjianbing
@@ -62,6 +65,12 @@ public class Base64Controller extends BaseController {
             }
             String ordId = orderService.insertOrders(orderVO);
             orderVO.setOrdid(ordId);
+
+            OrderItem param = new OrderItem();
+            param.setOrdid(ordId);
+            List<OrderItem> orderItemList = orderItemService.select(param);
+            orderVO.setField(orderItemList);
+
             return successResponse(orderVO);
 
         } catch (Exception e) {

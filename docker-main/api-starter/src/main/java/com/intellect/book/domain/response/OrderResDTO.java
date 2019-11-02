@@ -186,11 +186,4 @@ public class OrderResDTO implements Serializable {
     @Column(name = "OrderPicUrl")
     private String orderPicUrl;
 
-
-//    /**
-//     * item属性
-//     */
-//    private List<OrderItem> field;
-
-
 }

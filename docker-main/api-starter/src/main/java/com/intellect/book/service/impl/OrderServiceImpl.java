@@ -12,7 +12,9 @@ import com.intellect.book.domain.entity.OrderStatus;
 import com.intellect.book.domain.request.OrderVO;
 import com.intellect.book.domain.response.OrderItemResDTO;
 import com.intellect.book.domain.response.OrderResDTO;
+import com.intellect.book.enums.OrderStatusEnum;
 import com.intellect.book.service.OrderService;
+import com.intellect.book.utils.DateUtil;
 import com.intellect.book.utils.DictCodeUtil;
 import com.intellect.book.utils.OrderNoUtil;
 import org.apache.ibatis.session.RowBounds;
@@ -55,6 +57,7 @@ public class OrderServiceImpl extends AbstractBaseService<Order, OrderMapper> im
         BeanUtils.copyProperties(orderVO, order);
         final String ordId = OrderNoUtil.getUUID();
         order.setOrdid(ordId);
+        order.setOrderStatus(String.valueOf(OrderStatusEnum.ORDER_INDEX_101.getCode()));
         orderMapper.insert(order);
         if (!CollectionUtils.isEmpty(orderVO.getField())) {
             List<OrderItem> orderItems = orderVO.getField();
@@ -66,14 +69,20 @@ public class OrderServiceImpl extends AbstractBaseService<Order, OrderMapper> im
         OrderStatus orderStatus = new OrderStatus();
         orderStatus.setOrdid(ordId);
         orderStatus.setRxno(order.getRxno());
-        orderStatus.setStatus("101");
+        orderStatus.setStatus(String.valueOf(OrderStatusEnum.ORDER_INDEX_101.getCode()));
+        orderStatus.setOperdate(DateUtil.getLocalDateString());
         orderStatusMapper.insert(orderStatus);
         return ordId;
     }
 
     @Override
     public PageResult<OrderResDTO> orderList(String status, RowBounds rowBounds) {
-        List<Order> list = orderMapper.select(null);
+        Order param = new Order();
+        if (!Strings.isNullOrEmpty(status) && !"0".equals(status)) {
+            param.setOrderStatus(status);
+        }
+
+        List<Order> list = orderMapper.select(param);
         if (CollectionUtils.isEmpty(list)) {
             return null;
         }
@@ -84,17 +93,7 @@ public class OrderServiceImpl extends AbstractBaseService<Order, OrderMapper> im
             return orderResDTO;
         }).collect(Collectors.toList());
 
-//        result.forEach(x -> {
-//            if (!Strings.isNullOrEmpty(x.getOrdid())) {
-//                OrderItem param = new OrderItem();
-//                param.setOrdid(x.getOrdid());
-//                List<OrderItem> orderItemList = orderItemMapper.select(param);
-//                x.setField(orderItemList);
-//            }
-//        });
-
-        Integer total = orderMapper.selectCount(null);
-
+        Integer total = orderMapper.selectCount(param);
 
         return new PageResult(rowBounds, total, result);
     }
@@ -123,9 +122,13 @@ public class OrderServiceImpl extends AbstractBaseService<Order, OrderMapper> im
         weekend.weekendCriteria()
                 .andEqualTo(OrderStatus::getOrdid, ordId);
 
+        //状态表中记录的是过程状态
         OrderStatus orderStatus = new OrderStatus();
-        orderStatus.setStatus("103");
-        orderStatusMapper.updateByExampleSelective(orderStatus, weekend);
+        orderStatus.setOrdid(ordId);
+        orderStatus.setOperdate(DateUtil.getLocalDateString());
+        orderStatus.setStatus(String.valueOf(OrderStatusEnum.ORDER_INDEX_104.getCode()));
+
+        orderStatusMapper.insert(orderStatus);
 
         if (!Strings.isNullOrEmpty(orderPicUrl)) {
             Weekend<Order> OrderWeekend = Weekend.of(Order.class);
@@ -134,6 +137,7 @@ public class OrderServiceImpl extends AbstractBaseService<Order, OrderMapper> im
 
             Order order = new Order();
             order.setOrderPicUrl(orderPicUrl);
+            order.setOrderStatus(String.valueOf(OrderStatusEnum.ORDER_INDEX_104.getCode()));
             orderMapper.updateByExampleSelective(order, OrderWeekend);
         }
         if (Strings.isNullOrEmpty(orderItemIds)) {

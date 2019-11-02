@@ -3,6 +3,10 @@ package com.intellect.book.dao;
 import com.intellect.book.base.mapper.BaseMapper;
 import com.intellect.book.domain.entity.Order;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
+
+import java.util.List;
 
 /**
  * <p> </p>
@@ -13,4 +17,6 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface OrderMapper extends BaseMapper<Order> {
 
+    @Select("SELECT * FROM dict_book ORDER BY PublishDate DESC LIMIT #{limitCount}")
+    List<Order> getLatestBooks(@Param("limitCount") Integer limitCount);
 }
