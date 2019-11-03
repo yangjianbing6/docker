@@ -1,18 +1,18 @@
 package com.intellect.book.controller;
 
 import com.intellect.book.base.controller.BaseController;
-import com.intellect.book.base.token.Action;
 import com.intellect.book.base.token.Token;
 import com.intellect.book.dao.JunitBaseDao;
+import com.intellect.book.domain.request.ExecSql;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.assertj.core.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Arrays;
@@ -37,29 +37,29 @@ public class ExecController extends BaseController {
      * @return
      */
     @ApiOperation("执行sql")
-    @GetMapping("/exec")
+    @PostMapping("/exec")
     @Token
     @ApiImplicitParam(name = "token", value = "token", required = true, dataType = "String",
             paramType = "header")
-    public Object execSql(@RequestParam String sql
-            , @RequestParam String type
-    ) {
+    public Object execSql(@RequestBody ExecSql execSql) {
+
         String[] types = new String[]{"insert", "delete", "update", "select"};
-        if (Strings.isNullOrEmpty(type) || !Arrays.asList(types).contains(type)) {
+
+        if (execSql == null || Strings.isNullOrEmpty(execSql.getSql()) || !Arrays.asList(types).contains(execSql.getType())) {
             unSuccessResponse("参数异常");
         }
         try {
-            if (types[0].equals(type)) {
-                int result = junitBaseDao.insert(sql);
+            if (types[0].equals(execSql.getType())) {
+                int result = junitBaseDao.insert(execSql.getSql());
                 return successResponse(result > 0 ? true : false);
-            } else if (types[1].equals(type)) {
-                int result = junitBaseDao.delete(sql);
+            } else if (types[1].equals(execSql.getType())) {
+                int result = junitBaseDao.delete(execSql.getSql());
                 return successResponse(result > 0 ? true : false);
-            } else if (types[2].equals(type)) {
-                int result = junitBaseDao.update(sql);
+            } else if (types[2].equals(execSql.getType())) {
+                int result = junitBaseDao.update(execSql.getSql());
                 return successResponse(result > 0 ? true : false);
             } else {
-                List<LinkedHashMap<String, Object>> list = junitBaseDao.select(sql);
+                List<LinkedHashMap<String, Object>> list = junitBaseDao.select(execSql.getSql());
                 return successResponse(list);
             }
         } catch (Exception e) {
