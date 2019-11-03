@@ -47,9 +47,9 @@ public class QiniuController extends BaseController {
         String bucketName = "picture-of-prescription";
         PutPolicy putPolicy = new PutPolicy(bucketName);
         try {
-            String uptoken = putPolicy.token(mac);
+            String upToken = putPolicy.token(mac);
             Map<String, Object> result = Maps.newHashMap();
-            result.put("qiniuToken", uptoken);
+            result.put("qiniuToken", upToken);
 
             return successResponse(result);
         } catch (Exception e) {

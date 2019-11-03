@@ -25,6 +25,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -92,6 +93,11 @@ public class OrderServiceImpl extends AbstractBaseService<Order, OrderMapper> im
             BeanUtils.copyProperties(x, orderResDTO);
             return orderResDTO;
         }).collect(Collectors.toList());
+
+        result.forEach(x -> {
+            BigDecimal totalFee = orderMapper.getTotalFeeByOrdId(x.getOrdid());
+            x.setTotalFee(totalFee);
+        });
 
         Integer total = orderMapper.selectCountByExample(weekend);
 
@@ -186,6 +192,11 @@ public class OrderServiceImpl extends AbstractBaseService<Order, OrderMapper> im
 
         }
 
+    }
+
+    @Override
+    public BigDecimal getTotalFeeByOrdId(String ordId) {
+        return orderMapper.getTotalFeeByOrdId(ordId);
     }
 }
 

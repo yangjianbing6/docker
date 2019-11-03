@@ -14,6 +14,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
 import org.assertj.core.util.Strings;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -83,8 +84,11 @@ public class OrderController extends BaseController {
             Order param = new Order();
             param.setOrdid(ordId);
             List<Order> orderList = orderService.select(param);
+            OrderResDTO orderResDTO = new OrderResDTO();
+            BeanUtils.copyProperties(orderList.get(0), orderResDTO);
+            orderResDTO.setTotalFee(orderService.getTotalFeeByOrdId(ordId));
 
-            map.put("order", orderList.get(0));
+            map.put("order", orderResDTO);
             map.put("item", result);
             return successResponse(map);
         } catch (Exception e) {

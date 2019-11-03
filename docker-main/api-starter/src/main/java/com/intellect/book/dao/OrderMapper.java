@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -19,4 +20,12 @@ public interface OrderMapper extends BaseMapper<Order> {
 
     @Select("SELECT * FROM dict_book ORDER BY PublishDate DESC LIMIT #{limitCount}")
     List<Order> getLatestBooks(@Param("limitCount") Integer limitCount);
+
+    /**
+     * 获取处方的总金额
+     * @param ordId
+     * @return
+     */
+    @Select("select SUM(fee) from order_item where ordid = #{ordId}")
+    BigDecimal getTotalFeeByOrdId(@Param("ordId") String ordId);
 }

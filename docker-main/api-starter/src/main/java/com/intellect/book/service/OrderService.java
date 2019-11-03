@@ -6,8 +6,10 @@ import com.intellect.book.domain.entity.Order;
 import com.intellect.book.domain.request.OrderVO;
 import com.intellect.book.domain.response.OrderItemResDTO;
 import com.intellect.book.domain.response.OrderResDTO;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -31,4 +33,11 @@ public interface OrderService extends IBaseService<Order> {
      * @param orderItemIds
      */
     void orderHandOut(String ordId, String orderItemIds, String orderPicUrl);
+
+    /**
+     * 获取处方的总金额
+     * @param ordId
+     * @return
+     */
+    BigDecimal getTotalFeeByOrdId(@Param("ordId") String ordId);
 }

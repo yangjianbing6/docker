@@ -1,13 +1,12 @@
 package com.intellect.book.domain.response;
 
-import com.intellect.book.domain.entity.OrderItem;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import java.io.Serializable;
-import java.util.List;
+import java.math.BigDecimal;
 
 /**
  * @author yangjianbing
@@ -185,5 +184,10 @@ public class OrderResDTO implements Serializable {
      */
     @Column(name = "OrderPicUrl")
     private String orderPicUrl;
+
+    /**
+     * 处方总金额
+     */
+    private BigDecimal totalFee;
 
 }
