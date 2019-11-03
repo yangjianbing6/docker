@@ -22,6 +22,18 @@
 
 
     <dependencies>
+        <!--七牛-->
+        <!--<dependency>-->
+            <!--<groupId>com.qiniu</groupId>-->
+            <!--<artifactId>qiniu-java-sdk</artifactId>-->
+            <!--<version>[7.0.0, 7.2.99]</version>-->
+        <!--</dependency>-->
+        <dependency>
+            <groupId>com.qiniu</groupId>
+            <artifactId>qiniu-java-sdk</artifactId>
+            <version>[6.1.7, 6.999]</version>
+        </dependency>
+
         <!-- https://mvnrepository.com/artifact/net.iharder/base64 -->
         <dependency>
             <groupId>net.iharder</groupId>

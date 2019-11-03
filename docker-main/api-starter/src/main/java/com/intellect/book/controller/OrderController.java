@@ -1,8 +1,10 @@
 package com.intellect.book.controller;
 
+import com.google.common.collect.Maps;
 import com.intellect.book.base.controller.BaseController;
 import com.intellect.book.base.dto.result.PageResult;
 import com.intellect.book.base.token.Token;
+import com.intellect.book.domain.entity.Order;
 import com.intellect.book.domain.response.OrderItemResDTO;
 import com.intellect.book.domain.response.OrderResDTO;
 import com.intellect.book.service.OrderService;
@@ -16,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by yangjianbing
@@ -74,8 +77,16 @@ public class OrderController extends BaseController {
                             @RequestParam(value = "ordId")
                                     String ordId) {
         try {
+            Map<String, Object> map = Maps.newHashMap();
             List<OrderItemResDTO> result = orderService.orderItemList(ordId);
-            return successResponse(result);
+
+            Order param = new Order();
+            param.setOrdid(ordId);
+            List<Order> orderList = orderService.select(param);
+
+            map.put("order", orderList.get(0));
+            map.put("item", result);
+            return successResponse(map);
         } catch (Exception e) {
             log.error(e.getMessage(), e);
             return unSuccessResponse("查询失败");
