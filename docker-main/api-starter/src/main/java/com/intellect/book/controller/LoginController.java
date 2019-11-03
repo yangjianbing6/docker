@@ -38,6 +38,34 @@ public class LoginController extends BaseController {
     @Autowired
     private TokenService tokenService;
 
+    /**
+     * 登录
+     *
+     * @return
+     */
+    @ApiOperation("根据用户名密码登录")
+    @GetMapping("/by_password")
+    @Token(action = Action.SKIP)
+    public Object loginByPassword(@ApiParam(required = true, value = "登录名", name = "loginName")
+                                  @RequestParam("loginName") String loginName,
+                                  @ApiParam(required = true, value = "密码", name = "password")
+                                  @RequestParam("password") String password) {
+        DictEmployee param = new DictEmployee();
+        param.setLoginName(loginName);
+        param.setPassword(password);
+
+        DictEmployee dictEmployee = dictEmployeeService.selectOne(param);
+
+        if (dictEmployee == null) {
+            return unSuccessResponse("账号密码不正确");
+        }
+
+
+        Map<String, Object> result = Maps.newHashMap();
+        convert(result, dictEmployee);
+
+        return successResponse(result);
+    }
 
     /**
      * 登录
