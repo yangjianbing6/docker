@@ -77,14 +77,14 @@ public class OrderServiceImpl extends AbstractBaseService<Order, OrderMapper> im
 
     @Override
     public PageResult<OrderResDTO> orderList(String status, RowBounds rowBounds) {
-        Order param = new Order();
+        Weekend<Order> weekend = new Weekend<>(Order.class);
         if (!Strings.isNullOrEmpty(status) && !"0".equals(status)) {
-            param.setOrderStatus(status);
+            weekend.weekendCriteria().andLike(Order::getOrderStatus, status);
         }
+        List<Order> list = orderMapper.selectByExampleAndRowBounds(weekend, rowBounds);
 
-        List<Order> list = orderMapper.select(param);
         if (CollectionUtils.isEmpty(list)) {
-            return null;
+            return new PageResult<>(rowBounds, 0, null);
         }
 
         List<OrderResDTO> result = list.stream().map(x -> {
@@ -93,7 +93,7 @@ public class OrderServiceImpl extends AbstractBaseService<Order, OrderMapper> im
             return orderResDTO;
         }).collect(Collectors.toList());
 
-        Integer total = orderMapper.selectCount(param);
+        Integer total = orderMapper.selectCountByExample(weekend);
 
         return new PageResult(rowBounds, total, result);
     }
