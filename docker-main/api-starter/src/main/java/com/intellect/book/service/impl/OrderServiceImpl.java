@@ -53,12 +53,14 @@ public class OrderServiceImpl extends AbstractBaseService<Order, OrderMapper> im
 
     @Override
     @Transactional
-    public String insertOrders(OrderVO orderVO) {
+    public String insertOrders(OrderVO orderVO, String empId) {
         Order order = new Order();
         BeanUtils.copyProperties(orderVO, order);
         final String ordId = OrderNoUtil.getUUID();
         order.setOrdid(ordId);
         order.setOrderStatus(String.valueOf(OrderStatusEnum.ORDER_INDEX_101.getCode()));
+        order.setEmpid(empId);
+
         orderMapper.insert(order);
         if (!CollectionUtils.isEmpty(orderVO.getField())) {
             List<OrderItem> orderItems = orderVO.getField();
@@ -77,10 +79,12 @@ public class OrderServiceImpl extends AbstractBaseService<Order, OrderMapper> im
     }
 
     @Override
-    public PageResult<OrderResDTO> orderList(String status, RowBounds rowBounds) {
+    public PageResult<OrderResDTO> orderList(String empId, String status, RowBounds rowBounds) {
         Weekend<Order> weekend = new Weekend<>(Order.class);
         if (!Strings.isNullOrEmpty(status) && !"0".equals(status)) {
-            weekend.weekendCriteria().andLike(Order::getOrderStatus, status);
+            weekend.weekendCriteria().andLike(Order::getOrderStatus, status).andEqualTo(Order::getEmpid, empId);
+        } else {
+            weekend.weekendCriteria().andEqualTo(Order::getEmpid, empId);
         }
         weekend.orderBy("recipedate desc");
         List<Order> list = orderMapper.selectByExampleAndRowBounds(weekend, rowBounds);

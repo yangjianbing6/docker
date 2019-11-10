@@ -4,6 +4,7 @@ import com.google.common.collect.Maps;
 import com.intellect.book.base.controller.BaseController;
 import com.intellect.book.base.dto.result.PageResult;
 import com.intellect.book.base.token.Token;
+import com.intellect.book.base.token.utils.RequestUtil;
 import com.intellect.book.domain.entity.Order;
 import com.intellect.book.domain.response.OrderItemResDTO;
 import com.intellect.book.domain.response.OrderResDTO;
@@ -18,6 +19,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
 
@@ -46,7 +48,8 @@ public class OrderController extends BaseController {
     @Token
     @ApiImplicitParam(name = "token", value = "token", required = true, dataType = "String",
             paramType = "header")
-    public Object orderList(@ApiParam(required = false, value = "当前页数", name = "page")
+    public Object orderList(HttpServletRequest request,
+                            @ApiParam(required = false, value = "当前页数", name = "page")
                             @RequestParam(value = "page", defaultValue = "1")
                                     Integer page,
                             @ApiParam(required = false, value = "当前页面显示多少条 , 默认10条", name = "limit")
@@ -56,7 +59,9 @@ public class OrderController extends BaseController {
                             @RequestParam(value = "status")
                                     String status) {
         try {
-            PageResult<OrderResDTO> result = orderService.orderList(status, getRowRounds(page, limit));
+            String empId = RequestUtil.getEmpIdFromRequest(request);
+
+            PageResult<OrderResDTO> result = orderService.orderList(empId,status, getRowRounds(page, limit));
             return successResponse(result);
         } catch (Exception e) {
             log.error(e.getMessage(), e);

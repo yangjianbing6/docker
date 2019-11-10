@@ -20,9 +20,9 @@ import java.util.List;
  **/
 public interface OrderService extends IBaseService<Order> {
 
-    String insertOrders(OrderVO orderVO);
+    String insertOrders(OrderVO orderVO, String empId);
 
-    PageResult<OrderResDTO> orderList(String status, RowBounds rowBounds);
+    PageResult<OrderResDTO> orderList(String empId, String status, RowBounds rowBounds);
 
     List<OrderItemResDTO> orderItemList(String ordId);
 
@@ -36,6 +36,7 @@ public interface OrderService extends IBaseService<Order> {
 
     /**
      * 获取处方的总金额
+     *
      * @param ordId
      * @return
      */

@@ -3,6 +3,7 @@ package com.intellect.book.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.intellect.book.base.controller.BaseController;
 import com.intellect.book.base.token.Token;
+import com.intellect.book.base.token.utils.RequestUtil;
 import com.intellect.book.domain.entity.OrderItem;
 import com.intellect.book.domain.request.Base64DTO;
 import com.intellect.book.domain.request.OrderVO;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -51,11 +53,13 @@ public class Base64Controller extends BaseController {
     @Token
     @ApiImplicitParam(name = "token", value = "token", required = true, dataType = "String",
             paramType = "header")
-    public Object decodeOrder(@ApiParam(required = true, value = "base64数据", name = "base64Msg")
+    public Object decodeOrder(HttpServletRequest request,
+                              @ApiParam(required = true, value = "base64数据", name = "base64Msg")
                               @RequestBody Base64DTO base64DTO) {
         if (base64DTO == null || Strings.isNullOrEmpty(base64DTO.getBase64Msg())) {
             return unSuccessResponse("参数异常");
         }
+        String empId = RequestUtil.getEmpIdFromRequest(request);
         try {
             byte[] bytes = Base64.decode(base64DTO.getBase64Msg());
             String jsonStr = new String(bytes, "UTF-8");
@@ -63,7 +67,7 @@ public class Base64Controller extends BaseController {
             if (orderVO == null) {
                 return unSuccessResponse("解析失败");
             }
-            String ordId = orderService.insertOrders(orderVO);
+            String ordId = orderService.insertOrders(orderVO, empId);
             orderVO.setOrdid(ordId);
 
             OrderItem param = new OrderItem();

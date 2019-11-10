@@ -11,7 +11,8 @@ import java.util.Enumeration;
 import java.util.Map;
 
 /**
- *<p> </p>
+ * <p> </p>
+ *
  * @author huijun
  * @create 2018-11-23 12:56:25
  **/
@@ -49,6 +50,17 @@ public final class RequestUtil {
     public static String getReaderIdFromRequest(HttpServletRequest request) {
         Map<String, Object> tokenMap = tokenInfo(request);
         return tokenMap.getOrDefault(Constant.TOKEN_USER_ID, 0L).toString();
+    }
+
+    /**
+     * 获取empId
+     *
+     * @param request
+     * @return
+     */
+    public static String getEmpIdFromRequest(HttpServletRequest request) {
+        Map<String, Object> tokenMap = tokenInfo(request);
+        return tokenMap.getOrDefault(Constant.TOKEN_USER_ID, "").toString();
     }
 
 }
