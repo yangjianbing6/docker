@@ -28,4 +28,12 @@ public interface OrderMapper extends BaseMapper<Order> {
      */
     @Select("select SUM(fee) from order_item where ordid = #{ordId}")
     BigDecimal getTotalFeeByOrdId(@Param("ordId") String ordId);
+
+    /**
+     * 获取处方的品种数
+     * @param ordId
+     * @return
+     */
+    @Select("select count(1) from order_item where ordid = #{ordId}")
+    Integer getDrugsNum(@Param("ordId") String ordId);
 }

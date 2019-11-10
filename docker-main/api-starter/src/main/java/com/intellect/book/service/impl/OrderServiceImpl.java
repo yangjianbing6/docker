@@ -82,6 +82,7 @@ public class OrderServiceImpl extends AbstractBaseService<Order, OrderMapper> im
         if (!Strings.isNullOrEmpty(status) && !"0".equals(status)) {
             weekend.weekendCriteria().andLike(Order::getOrderStatus, status);
         }
+        weekend.orderBy("recipedate desc");
         List<Order> list = orderMapper.selectByExampleAndRowBounds(weekend, rowBounds);
 
         if (CollectionUtils.isEmpty(list)) {
@@ -97,6 +98,10 @@ public class OrderServiceImpl extends AbstractBaseService<Order, OrderMapper> im
         result.forEach(x -> {
             BigDecimal totalFee = orderMapper.getTotalFeeByOrdId(x.getOrdid());
             x.setTotalFee(totalFee);
+
+            Integer drugsNum = orderMapper.getDrugsNum(x.getOrdid());
+
+            x.setDrugNum(drugsNum);
         });
 
         Integer total = orderMapper.selectCountByExample(weekend);

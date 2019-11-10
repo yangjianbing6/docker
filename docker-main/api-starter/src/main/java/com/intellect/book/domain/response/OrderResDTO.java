@@ -190,4 +190,9 @@ public class OrderResDTO implements Serializable {
      */
     private BigDecimal totalFee;
 
+    /**
+     * 品种数
+     */
+    private Integer DrugNum;
+
 }

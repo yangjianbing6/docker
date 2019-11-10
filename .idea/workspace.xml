@@ -2,11 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1743649f-78e2-4188-a061-524a154bb565" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/config/JacksonConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/dao/DictOrgAuthMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/domain/entity/DictOrgAuth.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/domain/request/BasePasswordDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/domain/request/LoginPasswordDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/domain/request/LoginPersonIdDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/service/DictOrgAuthService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/service/impl/DictOrgAuthServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/controller/ExecController.java" beforeDir="false" afterPath="$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/controller/ExecController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/domain/entity/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/domain/entity/Order.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-main/api-starter/src/main/resources/bootstrap-develop.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-main/api-starter/src/main/resources/bootstrap-develop.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/controller/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/dao/OrderMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/dao/OrderMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/domain/response/OrderResDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/domain/response/OrderResDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/service/impl/OrderServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/service/impl/OrderServiceImpl.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/docker-eureka/target/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -22,11 +29,60 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ExecController.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/controller/ExecController.java">
+      <file leaf-file-name="LoginController.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/controller/LoginController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="71" column="16" selection-start-line="71" selection-start-column="16" selection-end-line="71" selection-end-column="16" />
+            <state relative-caret-position="184">
+              <caret line="139" column="18" selection-start-line="139" selection-start-column="18" selection-end-line="139" selection-end-column="18" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DictOrgAuthService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/service/DictOrgAuthService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="230">
+              <caret line="11" selection-start-line="11" selection-end-line="11" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DictOrgAuthServiceImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/service/impl/DictOrgAuthServiceImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="162">
+              <caret line="16" column="125" selection-start-line="16" selection-start-column="107" selection-end-line="16" selection-end-column="125" />
+              <folding>
+                <element signature="e#705#706#0" expanded="true" />
+                <element signature="e#768#769#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DictOrgAuthMapper.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/dao/DictOrgAuthMapper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="415">
+              <caret line="25" column="26" selection-start-line="25" selection-start-column="11" selection-end-line="25" selection-end-column="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="OrderMapper.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/dao/OrderMapper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="185">
+              <caret line="31" selection-start-line="31" selection-end-line="37" selection-end-column="54" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LoginPersonIdDTO.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/domain/request/LoginPersonIdDTO.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="230">
+              <caret line="10" column="29" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -71,14 +127,10 @@
         <option value="$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/utils/DateUtil.java" />
         <option value="$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/controller/OrderBillController.java" />
         <option value="$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/controller/Base64Controller.java" />
-        <option value="$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/controller/LoginController.java" />
         <option value="$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/domain/request/ExecSql.java" />
         <option value="$PROJECT_DIR$/docker-main/api-starter/pom.xml" />
         <option value="$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/controller/QiniuController.java" />
-        <option value="$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/domain/response/OrderResDTO.java" />
-        <option value="$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/dao/OrderMapper.java" />
         <option value="$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/service/OrderService.java" />
-        <option value="$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/service/impl/OrderServiceImpl.java" />
         <option value="$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/controller/OrderController.java" />
         <option value="$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/domain/entity/Order.java" />
         <option value="$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/dao/JunitBaseDao.java" />
@@ -87,6 +139,17 @@
         <option value="$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/base/controller/BaseController.java" />
         <option value="$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/base/entity/RespObject.java" />
         <option value="$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/controller/ExecController.java" />
+        <option value="$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/domain/response/OrderResDTO.java" />
+        <option value="$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/dao/OrderMapper.java" />
+        <option value="$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/service/impl/OrderServiceImpl.java" />
+        <option value="$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/domain/request/BasePasswordDTO.java" />
+        <option value="$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/domain/request/LoginPasswordDTO.java" />
+        <option value="$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/domain/entity/DictOrgAuth.java" />
+        <option value="$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/domain/request/LoginPersonIdDTO.java" />
+        <option value="$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/dao/DictOrgAuthMapper.java" />
+        <option value="$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/service/DictOrgAuthService.java" />
+        <option value="$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/service/impl/DictOrgAuthServiceImpl.java" />
+        <option value="$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/controller/LoginController.java" />
       </list>
     </option>
   </component>
@@ -120,10 +183,10 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="84" />
-    <option name="y" value="24" />
-    <option name="width" value="1752" />
-    <option name="height" value="969" />
+    <option name="x" value="-9" />
+    <option name="y" value="-9" />
+    <option name="width" value="1461" />
+    <option name="height" value="921" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -211,7 +274,7 @@
     <property name="RequestMappingsPanelWidth2" value="75" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="D:/daen/代码/banma_java/banma-codegen" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Project" />
@@ -221,15 +284,17 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.intellect.book.domain.request" />
       <recent name="com.intellect.book.controller" />
       <recent name="com.intellect.book.utils" />
       <recent name="com.intellect.book.enums" />
       <recent name="com.intellect.book.base.enums" />
-      <recent name="com.intellect.book.domain.response" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\yinguangbo\处方外流\workspace\docker\docker-main\api-starter\src\main\java\com\intellect\book\base" />
+      <recent name="D:\yinguangbo\处方外流\workspace\docker\docker-main\api-starter\src\main\java\com\intellect\book\service\impl" />
+      <recent name="D:\yinguangbo\处方外流\workspace\docker\docker-main\api-starter\src\main\java\com\intellect\book\service" />
       <recent name="D:\yinguangbo\处方外流\workspace\docker\docker-main\api-starter\src\main\java\com\intellect\book\dao" />
+      <recent name="D:\yinguangbo\处方外流\workspace\docker\docker-main\api-starter\src\main\java\com\intellect\book\base" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -341,7 +406,7 @@
       <workItem from="1572451515017" duration="246000" />
       <workItem from="1572662941050" duration="22435000" />
       <workItem from="1572750879281" duration="9049000" />
-      <workItem from="1573382539167" duration="2717000" />
+      <workItem from="1573382539167" duration="6509000" />
     </task>
     <task id="LOCAL-00001" summary="增加方法">
       <created>1572686156814</created>
@@ -392,19 +457,25 @@
       <option name="project" value="LOCAL" />
       <updated>1572793747890</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="增加null返回“”">
+      <created>1573387853718</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1573387853718</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="34447000" />
+    <option name="totallyTimeSpent" value="38239000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="Event Log" order="13" side_tool="true" />
-      <window_info anchor="right" id="Maven Projects" order="9" weight="0.32983023" />
+      <window_info anchor="right" id="Maven Projects" order="9" visible="true" weight="0.32983023" />
       <window_info anchor="bottom" id="Database Changes" order="11" show_stripe_button="false" />
       <window_info id="Capture Tool" order="7" />
       <window_info id="Designer" order="2" />
@@ -420,10 +491,10 @@
       <window_info anchor="bottom" id="Java Enterprise" order="10" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
       <window_info anchor="bottom" id="Version Control" order="12" />
-      <window_info anchor="bottom" id="Run" order="3" weight="0.44756556" />
+      <window_info active="true" anchor="bottom" id="Run" order="3" visible="true" weight="0.44756556" />
       <window_info anchor="bottom" id="Spring" order="8" />
       <window_info anchor="bottom" id="Terminal" order="9" />
-      <window_info content_ui="combo" id="Project" order="0" weight="0.3597413" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.3565077" />
       <window_info anchor="right" id="Bean Validation" order="8" />
       <window_info id="Web" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Find" order="2" weight="0.32958803" />
@@ -438,7 +509,7 @@
     <layout-to-restore>
       <window_info id="Designer" order="2" />
       <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="bottom" id="Run" order="3" weight="0.44756556" />
+      <window_info anchor="bottom" id="Run" order="3" visible="true" weight="0.44756556" />
       <window_info anchor="bottom" id="Spring" order="8" />
       <window_info id="Image Layers" order="3" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -456,9 +527,9 @@
       <window_info anchor="bottom" id="Java Enterprise" order="10" />
       <window_info anchor="bottom" id="Database Changes" order="11" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="12" />
-      <window_info anchor="right" id="Maven Projects" order="9" weight="0.32983023" />
+      <window_info anchor="right" id="Maven Projects" order="9" visible="true" weight="0.32983023" />
       <window_info anchor="bottom" id="Find" order="2" weight="0.32958803" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.3597413" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.3565077" />
       <window_info anchor="right" id="Database" order="5" />
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info id="Web" order="6" side_tool="true" />
@@ -483,7 +554,8 @@
     <MESSAGE value="修改分页接口" />
     <MESSAGE value="增加获取七牛token" />
     <MESSAGE value="增加处方总金额" />
-    <option name="LAST_COMMIT_MESSAGE" value="增加处方总金额" />
+    <MESSAGE value="增加null返回“”" />
+    <option name="LAST_COMMIT_MESSAGE" value="增加null返回“”" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -494,92 +566,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/base/dto/BaseDTO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/domain/entity/OrderItem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="438">
-          <caret line="168" column="20" selection-start-line="168" selection-start-column="11" selection-end-line="168" selection-end-column="20" />
-          <folding>
-            <element signature="e#2685#2686#0" expanded="true" />
-            <element signature="e#2719#2720#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/base/enums/SqlOrderEnum.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="169">
-          <caret line="8" column="12" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/base/enums/DeleteStatusEnum.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="169">
-          <caret line="9" column="12" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/base/enums/ResponseCodeEnum.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="48" column="26" lean-forward="true" selection-start-line="48" selection-start-column="26" selection-end-line="48" selection-end-column="26" />
-          <folding>
-            <element signature="e#1183#1184#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/base/enums/IndexedEnum.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="7" column="28" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/enums/OrderBillStatusEnum.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="56">
-          <caret line="25" column="5" lean-forward="true" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/enums/OrderStatusEnum.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="12" column="27" selection-start-line="12" selection-start-column="12" selection-end-line="12" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#673#674#0" expanded="true" />
-            <element signature="e#734#735#0" expanded="true" />
-            <element signature="e#776#777#0" expanded="true" />
-            <element signature="e#803#804#0" expanded="true" />
-            <element signature="e#848#849#0" expanded="true" />
-            <element signature="e#875#876#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/service/impl/OrderStatusServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="172">
-          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/service/impl/OrderItemServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="172">
-          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/service/impl/DictEmployeeServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="172">
@@ -598,16 +584,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2024">
           <caret line="115" column="56" selection-start-line="115" selection-start-column="38" selection-end-line="115" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/controller/OrderBillController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-82">
-          <caret line="61" column="22" selection-start-line="61" selection-start-column="22" selection-end-line="61" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -637,13 +613,6 @@
         <state relative-caret-position="-422" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/domain/request/Base64DTO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="10" selection-start-line="10" selection-end-line="10" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/domain/request/ExecSql.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="230">
@@ -662,13 +631,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="138">
           <caret line="24" column="17" selection-start-line="24" selection-start-column="17" selection-end-line="24" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/controller/LoginController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="47" column="4" lean-forward="true" selection-start-line="47" selection-start-column="4" selection-end-line="47" selection-end-column="32" />
         </state>
       </provider>
     </entry>
@@ -700,34 +662,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1541">
           <caret line="71" selection-start-line="71" selection-end-line="75" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/domain/response/OrderResDTO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="18" column="24" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/controller/OrderController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="36" column="11" lean-forward="true" selection-start-line="36" selection-start-column="11" selection-end-line="36" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/service/OrderService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="20" column="17" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/service/impl/OrderServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="151">
-          <caret line="42" column="11" selection-start-line="42" selection-start-column="11" selection-end-line="42" selection-end-column="11" />
         </state>
       </provider>
     </entry>
@@ -861,24 +795,153 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/dao/OrderMapper.java">
+    <entry file="file://$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/controller/ExecController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="94">
-          <caret line="18" column="50" selection-start-line="18" selection-start-column="50" selection-end-line="18" selection-end-column="50" />
+        <state relative-caret-position="70">
+          <caret line="61" column="19" selection-start-line="61" selection-start-column="19" selection-end-line="61" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/service/OrderService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="24" column="28" selection-start-line="24" selection-start-column="28" selection-end-line="24" selection-end-column="28" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/domain/entity/Order.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+        <state relative-caret-position="368">
+          <caret line="61" column="29" selection-start-line="61" selection-start-column="19" selection-end-line="61" selection-end-column="29" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/controller/ExecController.java">
+    <entry file="file://$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/domain/response/OrderResDTO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="71" column="16" selection-start-line="71" selection-start-column="16" selection-end-line="71" selection-end-column="16" />
+        <state relative-caret-position="81">
+          <caret line="193" column="10" selection-start-line="193" selection-start-column="10" selection-end-line="193" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/controller/OrderController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="67">
+          <caret line="58" column="62" selection-start-line="58" selection-start-column="62" selection-end-line="58" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/domain/request/Base64DTO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="10" selection-start-line="10" selection-end-line="10" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/controller/OrderBillController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="23">
+          <caret line="61" column="22" selection-start-line="61" selection-start-column="22" selection-end-line="61" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/domain/request/BasePasswordDTO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="12" column="11" selection-start-line="12" selection-start-column="4" selection-end-line="12" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/domain/request/LoginPasswordDTO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="10" column="29" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/4.3.12.RELEASE/spring-web-4.3.12.RELEASE.jar!/org/springframework/web/bind/annotation/RequestBody.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="16" column="18" selection-start-line="16" selection-start-column="18" selection-end-line="16" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/domain/entity/DictCode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="77">
+          <caret line="16" selection-start-line="16" selection-end-line="19" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/domain/entity/DictEmployee.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="47" column="29" lean-forward="true" selection-start-line="22" selection-start-column="3" selection-end-line="47" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/domain/entity/DictOrgAuth.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="943">
+          <caret line="41" column="1" selection-start-line="41" selection-start-column="1" selection-end-line="41" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/service/impl/OrderServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="749">
+          <caret line="84" column="43" selection-start-line="84" selection-start-column="43" selection-end-line="84" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/domain/request/LoginPersonIdDTO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="10" column="29" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/dao/OrderMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="185">
+          <caret line="31" selection-start-line="31" selection-end-line="37" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/dao/DictOrgAuthMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="415">
+          <caret line="25" column="26" selection-start-line="25" selection-start-column="11" selection-end-line="25" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/service/impl/DictOrgAuthServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="16" column="125" selection-start-line="16" selection-start-column="107" selection-end-line="16" selection-end-column="125" />
+          <folding>
+            <element signature="e#705#706#0" expanded="true" />
+            <element signature="e#768#769#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/service/DictOrgAuthService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docker-main/api-starter/src/main/java/com/intellect/book/controller/LoginController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="139" column="18" selection-start-line="139" selection-start-column="18" selection-end-line="139" selection-end-column="18" />
         </state>
       </provider>
     </entry>
