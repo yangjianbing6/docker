@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by yangjianbing
@@ -60,6 +61,15 @@ public class ExecController extends BaseController {
                 return successResponse(result > 0 ? true : false);
             } else {
                 List<LinkedHashMap<String, Object>> list = junitBaseDao.select(execSql.getSql());
+                list.forEach(x -> {
+                    Set<String> keys = x.keySet();
+                    keys.forEach(y -> {
+                        if (x.get(y) == null) {
+                            x.put(y, "");
+                        }
+                    });
+                });
+
                 return successResponse(list);
             }
         } catch (Exception e) {

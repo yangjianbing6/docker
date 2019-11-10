@@ -22,6 +22,8 @@ eureka:
       defaultZone: http://localhost:8896/eureka/,http://localhost:8896/eureka/
     instance:
            status-page-url: http://localhost:8890/eureka/swagger-ui.html
-
+mybatis:
+  configuration:
+    call-setters-on-nulls: true
 
 

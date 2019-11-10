@@ -13,7 +13,7 @@ import javax.persistence.Table;
  * @create 2019-10-30 23:29:01
  **/
 
-@Table(name = "`order`")
+@Table(name = "orders")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
