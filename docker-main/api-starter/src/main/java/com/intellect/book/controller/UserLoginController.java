@@ -50,7 +50,7 @@ public class UserLoginController extends BaseController {
     @ApiOperation("根据微信对应的id登录")
     @PostMapping("/by_wechatid")
     @Token(action = Action.SKIP)
-    public Object loginByPassword(@RequestBody LoginWeChatIdDTO loginWeChatIdDTO) {
+    public Object loginByWechatid(@RequestBody LoginWeChatIdDTO loginWeChatIdDTO) {
         if (loginWeChatIdDTO == null || Strings.isNullOrEmpty(loginWeChatIdDTO.getWechatId())) {
             return unSuccessResponse("参数异常");
         }
@@ -75,9 +75,9 @@ public class UserLoginController extends BaseController {
      * @return
      */
     @ApiOperation("根据用户WebChatID注册")
-    @PostMapping("/by_wechatid")
+    @PostMapping("/create_user")
     @Token(action = Action.SKIP)
-    public Object loginByPassword(@RequestBody WeChatDTO weChatDTO) {
+    public Object createUser(@RequestBody WeChatDTO weChatDTO) {
         if (weChatDTO == null
                 || Strings.isNullOrEmpty(weChatDTO.getWechatId())) {
             return unSuccessResponse("参数异常");
