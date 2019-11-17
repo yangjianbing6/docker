@@ -8,7 +8,9 @@ import com.intellect.book.base.token.Token;
 import com.intellect.book.base.token.service.TokenService;
 import com.intellect.book.domain.entity.DictUsers;
 import com.intellect.book.domain.request.LoginWeChatIdDTO;
+import com.intellect.book.domain.request.WeChatDTO;
 import com.intellect.book.service.DictUsersService;
+import com.intellect.book.utils.OrderNoUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -49,12 +51,12 @@ public class UserLoginController extends BaseController {
     @PostMapping("/by_wechatid")
     @Token(action = Action.SKIP)
     public Object loginByPassword(@RequestBody LoginWeChatIdDTO loginWeChatIdDTO) {
-        if (loginWeChatIdDTO == null || Strings.isNullOrEmpty(loginWeChatIdDTO.getWechatID())) {
+        if (loginWeChatIdDTO == null || Strings.isNullOrEmpty(loginWeChatIdDTO.getWechatId())) {
             return unSuccessResponse("参数异常");
         }
 
         DictUsers param = new DictUsers();
-        param.setWechatID(loginWeChatIdDTO.getWechatID());
+        param.setWechatID(loginWeChatIdDTO.getWechatId());
 
         DictUsers dictUsers = dictUsersService.selectOne(param);
 
@@ -66,6 +68,40 @@ public class UserLoginController extends BaseController {
         convert(result, dictUsers);
 
         return successResponse(result);
+    }
+    /**
+     * 根据用户WebChatID注册
+     *
+     * @return
+     */
+    @ApiOperation("根据用户WebChatID注册")
+    @PostMapping("/by_wechatid")
+    @Token(action = Action.SKIP)
+    public Object loginByPassword(@RequestBody WeChatDTO weChatDTO) {
+        if (weChatDTO == null
+                || Strings.isNullOrEmpty(weChatDTO.getWechatId())) {
+            return unSuccessResponse("参数异常");
+        }
+
+        DictUsers param = new DictUsers();
+        param.setWechatID(weChatDTO.getWechatId());
+
+        DictUsers dictUsers = dictUsersService.selectOne(param);
+
+        if (dictUsers != null) {
+            return unSuccessResponse("WebChatID已注册");
+        }
+
+        String userId = OrderNoUtil.getUUID();
+        dictUsers = new DictUsers();
+        dictUsers.setWechatID(weChatDTO.getWechatId());
+        dictUsers.setUserName(weChatDTO.getName());
+        dictUsers.setUserID(userId);
+        dictUsers.setPhone(weChatDTO.getTelephone());
+        dictUsers.setSexCode(weChatDTO.getSex());
+        dictUsersService.insert(dictUsers);
+
+        return successResponse("保存成功");
     }
 
 

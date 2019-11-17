@@ -12,5 +12,5 @@ public class LoginWeChatIdDTO {
     /**
      * 微信对应的id
      */
-    private String wechatID;
+    private String wechatId;
 }
