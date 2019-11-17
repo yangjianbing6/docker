@@ -10,6 +10,7 @@ import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.assertj.core.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -61,14 +62,20 @@ public class ExecController extends BaseController {
                 return successResponse(result > 0 ? true : false);
             } else {
                 List<LinkedHashMap<String, Object>> list = junitBaseDao.select(execSql.getSql());
-                list.forEach(x -> {
-                    Set<String> keys = x.keySet();
-                    keys.forEach(y -> {
-                        if (x.get(y) == null) {
-                            x.put(y, "");
+                if (!CollectionUtils.isEmpty(list)) {
+                    list.forEach(x -> {
+                        if (x == null) {
+                            return;
                         }
+                        Set<String> keys = x.keySet();
+                        keys.forEach(y -> {
+                            if (x.get(y) == null) {
+                                x.put(y, "");
+                            }
+                        });
                     });
-                });
+                }
+
 
                 return successResponse(list);
             }

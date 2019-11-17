@@ -8,6 +8,7 @@ import com.intellect.book.base.token.Token;
 import com.intellect.book.base.token.service.TokenService;
 import com.intellect.book.domain.entity.DictEmployee;
 import com.intellect.book.domain.entity.DictOrgAuth;
+import com.intellect.book.domain.request.DoctorDTO;
 import com.intellect.book.domain.request.LoginPasswordDTO;
 import com.intellect.book.domain.request.LoginPersonIdDTO;
 import com.intellect.book.service.DictEmployeeService;
@@ -109,6 +110,46 @@ public class LoginController extends BaseController {
         convert(result, dictEmployee);
 
         return successResponse(result);
+    }
+
+
+    /**
+     * 新增海淀app医生用户
+     *
+     * @return
+     */
+    @ApiOperation("新增海淀app医生用户")
+    @PostMapping("/save_doctor")
+    @Token(action = Action.SKIP)
+    public Object saveDoctor(@RequestBody DoctorDTO doctorDTO) {
+        if (doctorDTO == null
+                || Strings.isNullOrEmpty(doctorDTO.getDoctorid())
+                || Strings.isNullOrEmpty(doctorDTO.getAppid())
+                || Strings.isNullOrEmpty(doctorDTO.getAppkey())) {
+            return unSuccessResponse("参数异常");
+        }
+
+        try {
+            //先判断appid 和appkey 是否存在，获取orgId
+            //保存医生数据到employee表中
+            DictOrgAuth param = new DictOrgAuth();
+            param.setAppid(doctorDTO.getAppid());
+            param.setAppkey(doctorDTO.getAppkey());
+            DictOrgAuth dictOrgAuth = dictOrgAuthService.selectOne(param);
+            if(dictOrgAuth == null){
+                return unSuccessResponse("APP未授权");
+            }
+
+            dictOrgAuthService.saveDoctorInfo(doctorDTO,dictOrgAuth.getOrgId());
+
+            return successResponse("保存成功");
+        } catch (Exception e) {
+            log.error(e.getMessage(),e);
+            return unSuccessResponse("保存失败");
+        }
+
+
+
     }
 
     /**

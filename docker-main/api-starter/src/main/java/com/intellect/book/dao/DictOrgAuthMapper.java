@@ -17,7 +17,7 @@ public interface DictOrgAuthMapper extends BaseMapper<DictOrgAuth> {
 
 
     /**
-     * 获取处方的品种数
+     *
      *
      * @param empId
      * @return
