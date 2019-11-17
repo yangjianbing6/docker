@@ -2,6 +2,7 @@ package com.intellect.book.base.token.service;
 
 
 import com.intellect.book.domain.entity.DictEmployee;
+import com.intellect.book.domain.entity.DictUsers;
 
 /**
  * <p></p>
@@ -18,6 +19,12 @@ public interface TokenService {
      */
     String generateToken(DictEmployee dictEmployee);
 
+    /**
+     * 生成TOKEN
+     *
+     * @param dictUsers
+     */
+    String generateToken(DictUsers dictUsers);
 
     /**
      * 校验
@@ -26,4 +33,10 @@ public interface TokenService {
      */
     boolean checkToken(String dictEmployeeId);
 
+    /**
+     * 校验
+     *
+     * @param
+     */
+    boolean checkToken4User(String dictEmployeeId);
 }

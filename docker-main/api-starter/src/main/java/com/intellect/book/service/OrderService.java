@@ -24,6 +24,8 @@ public interface OrderService extends IBaseService<Order> {
 
     PageResult<OrderResDTO> orderList(String empId, String status, RowBounds rowBounds);
 
+    PageResult<OrderResDTO> userOrderList(String userId, String status, RowBounds rowBounds);
+
     List<OrderItemResDTO> orderItemList(String ordId);
 
     /**

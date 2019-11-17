@@ -33,7 +33,9 @@ public class TokenInterceptor extends HandlerInterceptorAdapter {
             }
             String readerIdFromRequest = RequestUtil.getReaderIdFromRequest(request);
             boolean checkResult = tokenService.checkToken(readerIdFromRequest);
-            if (!checkResult) {
+
+            boolean checkResult2  = tokenService.checkToken4User(readerIdFromRequest);
+            if (!checkResult && !checkResult2) {
                 response.setStatus(401);
                 return false;
             }

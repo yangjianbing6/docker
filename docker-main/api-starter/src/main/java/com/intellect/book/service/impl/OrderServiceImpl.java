@@ -114,6 +114,41 @@ public class OrderServiceImpl extends AbstractBaseService<Order, OrderMapper> im
     }
 
     @Override
+    public PageResult<OrderResDTO> userOrderList(String userId, String status, RowBounds rowBounds) {
+        Weekend<Order> weekend = new Weekend<>(Order.class);
+        if (!Strings.isNullOrEmpty(status) && !"0".equals(status)) {
+            weekend.weekendCriteria().andLike(Order::getOrderStatus, status).andEqualTo(Order::getUserID, userId);
+        } else {
+            weekend.weekendCriteria().andEqualTo(Order::getUserID, userId);
+        }
+        weekend.orderBy("recipedate desc");
+        List<Order> list = orderMapper.selectByExampleAndRowBounds(weekend, rowBounds);
+
+        if (CollectionUtils.isEmpty(list)) {
+            return new PageResult<>(rowBounds, 0, null);
+        }
+
+        List<OrderResDTO> result = list.stream().map(x -> {
+            OrderResDTO orderResDTO = new OrderResDTO();
+            BeanUtils.copyProperties(x, orderResDTO);
+            return orderResDTO;
+        }).collect(Collectors.toList());
+
+        result.forEach(x -> {
+            BigDecimal totalFee = orderMapper.getTotalFeeByOrdId(x.getOrdid());
+            x.setTotalFee(totalFee);
+
+            Integer drugsNum = orderMapper.getDrugsNum(x.getOrdid());
+
+            x.setDrugNum(drugsNum);
+        });
+
+        Integer total = orderMapper.selectCountByExample(weekend);
+
+        return new PageResult(rowBounds, total, result);
+    }
+
+    @Override
     public List<OrderItemResDTO> orderItemList(String ordId) {
         OrderItem param = new OrderItem();
         param.setOrdid(ordId);

@@ -63,4 +63,15 @@ public final class RequestUtil {
         return tokenMap.getOrDefault(Constant.TOKEN_USER_ID, "").toString();
     }
 
+    /**
+     * 获取UserId
+     *
+     * @param request
+     * @return
+     */
+    public static String getUserdFromRequest(HttpServletRequest request) {
+        Map<String, Object> tokenMap = tokenInfo(request);
+        return tokenMap.getOrDefault(Constant.TOKEN_USER_ID, "").toString();
+    }
+
 }
