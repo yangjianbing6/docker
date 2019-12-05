@@ -6,6 +6,8 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
+import java.util.List;
+
 /**
  * <p> </p>
  *
@@ -22,6 +24,6 @@ public interface DictOrgAuthMapper extends BaseMapper<DictOrgAuth> {
      * @param empId
      * @return
      */
-    @Select("select r.OrgID from dict_employee e left JOIN dict_reader_org_relation r on e.EmpID= r.EmpID where e.EmpID = #{empId}")
-    String getOrgIdByEmpId(@Param("empId") String empId);
+    @Select("select r.OrgID from dict_employee e left JOIN dict_emp_org_relation r on e.EmpID= r.EmpID where e.EmpID = #{empId}")
+    List<String> getOrgIdByEmpId(@Param("empId") String empId);
 }

@@ -61,7 +61,7 @@ public class OrderController extends BaseController {
         try {
             String empId = RequestUtil.getEmpIdFromRequest(request);
 
-            PageResult<OrderResDTO> result = orderService.orderList(empId,status, getRowRounds(page, limit));
+            PageResult<OrderResDTO> result = orderService.orderList(empId, status, getRowRounds(page, limit));
             return successResponse(result);
         } catch (Exception e) {
             log.error(e.getMessage(), e);
@@ -123,7 +123,7 @@ public class OrderController extends BaseController {
                                @ApiParam(required = false,
                                        value = "医嘱的图片路径",
                                        name = "orderPicUrl")
-                               @RequestParam(value = "orderPicUrl")
+                               @RequestParam(required = false, value = "orderPicUrl")
                                        String orderPicUrl) {
         if (Strings.isNullOrEmpty(ordId) || Strings.isNullOrEmpty(orderItemIds)) {
             return unSuccessResponse("参数异常");

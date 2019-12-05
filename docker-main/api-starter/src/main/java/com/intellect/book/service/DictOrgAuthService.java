@@ -4,6 +4,8 @@ import com.intellect.book.base.service.IBaseService;
 import com.intellect.book.domain.entity.DictOrgAuth;
 import com.intellect.book.domain.request.DoctorDTO;
 
+import java.util.List;
+
 /**
  * <p> </p>
  *
@@ -16,7 +18,7 @@ public interface DictOrgAuthService extends IBaseService<DictOrgAuth> {
      * @param empId
      * @return
      */
-    String getOrgIdByEmpId(String empId);
+    List<String> getOrgIdByEmpId(String empId);
 
     /**
      * 保存医生数据

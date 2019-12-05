@@ -18,11 +18,13 @@ import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.assertj.core.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -136,18 +138,17 @@ public class LoginController extends BaseController {
             param.setAppid(doctorDTO.getAppid());
             param.setAppkey(doctorDTO.getAppkey());
             DictOrgAuth dictOrgAuth = dictOrgAuthService.selectOne(param);
-            if(dictOrgAuth == null){
+            if (dictOrgAuth == null) {
                 return unSuccessResponse("APP未授权");
             }
 
-            dictOrgAuthService.saveDoctorInfo(doctorDTO,dictOrgAuth.getOrgId());
+            dictOrgAuthService.saveDoctorInfo(doctorDTO, dictOrgAuth.getOrgId());
 
             return successResponse("保存成功");
         } catch (Exception e) {
-            log.error(e.getMessage(),e);
+            log.error(e.getMessage(), e);
             return unSuccessResponse("保存失败");
         }
-
 
 
     }
@@ -178,22 +179,26 @@ public class LoginController extends BaseController {
         if (Strings.isNullOrEmpty(appId) || Strings.isNullOrEmpty(appKey)) {
             return false;
         }
-        String orgId = dictOrgAuthService.getOrgIdByEmpId(empId);
-
-        if (Strings.isNullOrEmpty(orgId)) {
-            return false;
-        }
-
         DictOrgAuth param1 = new DictOrgAuth();
-        param1.setOrgId(orgId);
+        param1.setAppid(appId);
+        param1.setAppkey(appKey);
         DictOrgAuth dictOrgAuth = dictOrgAuthService.selectOne(param1);
 
         if (dictOrgAuth == null) {
             return false;
         }
-        if (appId.equals(dictOrgAuth.getAppid()) && appKey.equals(dictOrgAuth.getAppkey())) {
+
+
+        List<String> orgIds = dictOrgAuthService.getOrgIdByEmpId(empId);
+
+        if (CollectionUtils.isEmpty(orgIds)) {
+            return false;
+        }
+
+        if (orgIds.contains(dictOrgAuth.getOrgId())) {
             return true;
         }
+
 
         return false;
     }
