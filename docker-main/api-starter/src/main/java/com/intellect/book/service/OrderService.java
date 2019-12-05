@@ -11,6 +11,7 @@ import org.apache.ibatis.session.RowBounds;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p> </p>
@@ -43,4 +44,11 @@ public interface OrderService extends IBaseService<Order> {
      * @return
      */
     BigDecimal getTotalFeeByOrdId(@Param("ordId") String ordId);
+
+    /**
+     *
+     * @param ordId
+     * @return
+     */
+    Map<String, Object> getOrderItemList(String ordId);
 }

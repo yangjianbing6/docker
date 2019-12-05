@@ -1,5 +1,6 @@
 package com.intellect.book.service.impl;
 
+import com.google.common.collect.Maps;
 import com.intellect.book.base.dto.result.PageResult;
 import com.intellect.book.base.mapper.weekend.Weekend;
 import com.intellect.book.base.service.AbstractBaseService;
@@ -28,6 +29,7 @@ import org.springframework.util.CollectionUtils;
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
@@ -241,6 +243,23 @@ public class OrderServiceImpl extends AbstractBaseService<Order, OrderMapper> im
     @Override
     public BigDecimal getTotalFeeByOrdId(String ordId) {
         return orderMapper.getTotalFeeByOrdId(ordId);
+    }
+
+    @Override
+    public Map<String, Object> getOrderItemList(String ordId) {
+        Map<String, Object> map = Maps.newHashMap();
+        List<OrderItemResDTO> result = this.orderItemList(ordId);
+
+        Order param = new Order();
+        param.setOrdid(ordId);
+        List<Order> orderList = this.select(param);
+        OrderResDTO orderResDTO = new OrderResDTO();
+        BeanUtils.copyProperties(orderList.get(0), orderResDTO);
+        orderResDTO.setTotalFee(this.getTotalFeeByOrdId(ordId));
+
+        map.put("order", orderResDTO);
+        map.put("item", result);
+        return map;
     }
 }
 
